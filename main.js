@@ -17,5 +17,15 @@ var x = setInterval(function () {
     if (distance < 0) {
         clearInterval(x);
         document.getElementById("countdown").innerHTML = "¡Ha llegado la fecha deseada!";
+        if ('Notification' in window && Notification.permission === 'granted') {
+            var notification = new Notification('¡La fecha deseada ha llegado!', {
+                body: 'Es hora de celebrar',
+                icon: 'assets/images/cloud.png'
+            });
+        }
     }
 }, 1000);
+
+if ('Notification' in window) {
+    Notification.requestPermission();
+}
